@@ -2,10 +2,6 @@ version: "3"
 services:
   hub:
     image: selenium/hub:4.1.2
-    ports:
-      - "4444:4444"
-      - "4443:4443"
-      - "4442:4442"
   chrome:
     image: selenium/node-chrome:4.1.2
     shm_size: '2g'        
@@ -25,13 +21,13 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   search_module:
-    image: raghudockernew/my-selenium-docker:new3
+    image: raghudockernew/selenium-docker
     depends_on:
       - chrome
       - firefox
     environment:
-      - "BROWSER = chrome"
-      - "HUB_HOST = hub"
-      - "MODULE = search-module.xml"
+      - "BROWSER=chrome"
+      - "HUB_HOST=hub"
+      - "MODULE=search-module.xml"
     volumes:
-      - "./search:/usr/share/udemy/test-output"
+      - "./output/search-result:/usr/share/udemy/test-output"
