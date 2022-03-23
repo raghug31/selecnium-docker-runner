@@ -29,6 +29,6 @@ services:
       - "BROWSER:chrome"
       - "HUB_HOST:hub"
       - "MODULE:search-module.xml"
-    entrypoint: java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=vhrome -DHUB_HOST=hub  org.testng.TestNG search-module.xml
+    entrypoint: java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=chrome -DHUB_HOST=hub  org.testng.TestNG search-module.xml
     volumes:
       - "./output/search-result:/usr/share/udemy/test-output"
