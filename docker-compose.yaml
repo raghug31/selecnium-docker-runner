@@ -8,9 +8,9 @@ services:
     depends_on:
       - hub
     environment:
-      - SE_EVENT_BUS_HOST=hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_EVENT_BUS_HOST:hub
+      - SE_EVENT_BUS_PUBLISH_PORT:4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT:4443
   firefox:
     image: selenium/node-firefox:4.1.2
     shm_size: '2g'   
@@ -26,9 +26,9 @@ services:
       - chrome
       - firefox
     environment:
-      - "BROWSER=chrome"
-      - "HUB_HOST=hub"
-      - "MODULE=search-module.xml"
-    entrypoint: java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=$BROWSER -DHUB_HOST=$HUB_HOST  org.testng.TestNG $MODULE
+      - BROWSER:chrome
+      - HUB_HOST:hub
+      - MODULE:search-module.xml
+    entrypoint: java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=$(BROWSER) -DHUB_HOST=$(HUB_HOST)  org.testng.TestNG $(MODULE)
     volumes:
       - "./output/search-result:/usr/share/udemy/test-output"
